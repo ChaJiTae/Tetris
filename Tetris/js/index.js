@@ -6,6 +6,7 @@ const playground = document.querySelector(".playground > ul");
 const gameText = document.querySelector(".game-text");
 const scoreDisplay = document.querySelector(".score");
 const restartButton = document.querySelector(".game-text > button");
+
 //Setting
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
@@ -79,6 +80,7 @@ function renderBlocks(moveType=""){
     movingItem.top = top;
     movingItem.direction = direction;
 }
+
 function seizeBlock(){
     const movingBlocks = document.querySelectorAll(".moving");
     movingBlocks.forEach(moving=>{
@@ -89,7 +91,6 @@ function seizeBlock(){
 }
 
 function checkMatch(){
-
     const childNodes = playground.childNodes;
     childNodes.forEach(child=>{
         let matched = true;
@@ -105,17 +106,14 @@ function checkMatch(){
             scoreDisplay.innerText = score;
         }
     })
-
     generateNewBlock();
 }
 
 function generateNewBlock(){
-
     clearInterval(downInterval);
     downInterval = setInterval(()=>{
         moveBlock('top',1)
     },duration)
-
     //blocks는 오브젝트이기에 반복문을 돌리기 위해 Object.entries를 이용함
     const blockArray = Object.entries(BLOCKS);
     //곱한 값만큼 random값 형성
